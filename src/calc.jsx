@@ -3,18 +3,13 @@ import Plot from 'react-plotly.js';
 
 function Calc(props) {
     const [hist, setHist] = useState([])
-    //const [nn, setNN] = useState(100)
     const [s, ss] = useState()
     const [stats, setStats] = useState([0,0])
     let x
     useEffect(() => {
-	//console.log(getSampleMean(100), "the mean!")
 	setTimeout(() => {
 	    setHist(getHistogram(10000, props.nn))
 	}, 0.1 * 1000)
-
-	//console.log("rerender")
-	//console.log(hist)
     })
 
     const ds = [
@@ -46,10 +41,6 @@ function Calc(props) {
 
     const getSampleMean = (n) => {
 	let nums = new Array(n).fill(0)
-	//nums = nums.map(() => getUniformRandomNumber())
-	//nums = nums.map(() => getExponentialRandomNumber())
-	//nums = nums.map(() => getRandomGeometric())
-	//nums = nums.map(() => getBernRandomNum())
 	nums = nums.map(() => ds[props.d]())
 	let sum = nums.reduce((a, b) => a + b, 0)
 	let avg = (sum / n) || 0
@@ -78,7 +69,6 @@ function Calc(props) {
 	variance /= num;
 	return variance;
     };
-
 
     return (
 	<div className="flex flex-col items-center justify-center align-middle border-0 border-blue-500 h-2/3">
@@ -117,5 +107,4 @@ function Calc(props) {
 	</div>
     );
 }
-
 export default Calc;
